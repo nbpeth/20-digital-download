@@ -150,41 +150,6 @@ html, body {
   color: var(--cream);
 }
 
-/* Download all */
-.download-all-wrapper {
-  margin-top: 32px;
-  display: flex;
-  justify-content: center;
-}
-
-.download-all-btn {
-  font-family: 'Cutive Mono', 'Courier New', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
-  text-transform: lowercase;
-  cursor: pointer;
-  background: transparent;
-  color: var(--ink);
-  border: 1px solid var(--ink);
-  padding: 10px 28px;
-  transition: background 0.15s ease, color 0.15s ease;
-}
-
-.download-all-btn:hover:not(:disabled) {
-  background: var(--ink);
-  color: var(--cream);
-}
-
-.download-all-btn:disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-
-.download-all-btn.done {
-  border-color: var(--rust);
-  color: var(--rust);
-}
-
 /* Footer */
 .footer {
   margin-top: 56px;

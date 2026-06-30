@@ -35,38 +35,6 @@ function TrackRow({ track, index }) {
   )
 }
 
-function DownloadAll() {
-  const [status, setStatus] = useState('idle')
-
-  function handleDownloadAll() {
-    setStatus('downloading')
-    tracks.forEach((track, i) => {
-      setTimeout(() => {
-        const a = document.createElement('a')
-        a.href = driveDownloadUrl(track.driveId)
-        a.download = track.title
-        document.body.appendChild(a)
-        a.click()
-        document.body.removeChild(a)
-        if (i === tracks.length - 1) setStatus('done')
-      }, i * 800)
-    })
-  }
-
-  return (
-    <div className="download-all-wrapper">
-      <button
-        className={`download-all-btn ${status}`}
-        onClick={handleDownloadAll}
-        disabled={status === 'downloading'}
-      >
-        {status === 'idle' && <>&#8675; download all</>}
-        {status === 'downloading' && 'downloading…'}
-        {status === 'done' && 'all done ♥'}
-      </button>
-    </div>
-  )
-}
 
 export default function App() {
   return (
@@ -91,8 +59,6 @@ export default function App() {
           <TrackRow key={track.id} track={track} index={i} />
         ))}
       </main>
-
-      <DownloadAll />
 
       <footer className="footer">
         <p>💕</p>

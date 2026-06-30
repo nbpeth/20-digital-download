@@ -61,7 +61,7 @@ export default function App() {
       </main>
 
       <footer className="footer">
-        <p>💕</p>
+        <p>6/30/2006 💕 6/30/2026</p>
       </footer>
     </div>
   )

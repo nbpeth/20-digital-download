@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npm install *)",
-      "Bash(sudo chmod -R u+rwx /Users/nicholaspeth/.npm/_cacache)"
+      "Bash(sudo chmod -R u+rwx /Users/nicholaspeth/.npm/_cacache)",
+      "Bash(git add *)"
     ]
   }
 }

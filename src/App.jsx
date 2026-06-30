@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 
-// Replace DRIVE_FILE_ID with the ID from your Google Drive share link:
-// e.g. https://drive.google.com/file/d/DRIVE_FILE_ID/view
 const tracks = [
   { id: 1, title: 'I', driveId: '105ZLZBFoCsUPVmwuwNKbh619LV0VjAKB' },
   { id: 2, title: 'II', driveId: '1y1FtEIlYDYaJ-RH95HbSUqtCQVA0phTR' },
   { id: 3, title: 'III', driveId: '1hjts4_QEfOK6mkYJzTqGjvJl00U_WEll' },
-  { id: 3, title: 'Goodnight', driveId: '1oFiR0R2XRiHE88JfLmCrfJ75XTLFupEi' },
-  { id: 3, title: "Michelle's Spring Waltz", driveId: '1FrWLWZ8r369VLTyxDv6tMwgodxvtb4SS' },
+  { id: 4, title: 'Goodnight', driveId: '1oFiR0R2XRiHE88JfLmCrfJ75XTLFupEi' },
+  { id: 5, title: "Michelle's Spring Waltz", driveId: '1FrWLWZ8r369VLTyxDv6tMwgodxvtb4SS' },
 ]
 
 function driveDownloadUrl(driveId) {
@@ -37,6 +35,39 @@ function TrackRow({ track, index }) {
   )
 }
 
+function DownloadAll() {
+  const [status, setStatus] = useState('idle')
+
+  function handleDownloadAll() {
+    setStatus('downloading')
+    tracks.forEach((track, i) => {
+      setTimeout(() => {
+        const a = document.createElement('a')
+        a.href = driveDownloadUrl(track.driveId)
+        a.download = track.title
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+        if (i === tracks.length - 1) setStatus('done')
+      }, i * 800)
+    })
+  }
+
+  return (
+    <div className="download-all-wrapper">
+      <button
+        className={`download-all-btn ${status}`}
+        onClick={handleDownloadAll}
+        disabled={status === 'downloading'}
+      >
+        {status === 'idle' && <>&#8675; download all</>}
+        {status === 'downloading' && 'downloading…'}
+        {status === 'done' && 'all done ♥'}
+      </button>
+    </div>
+  )
+}
+
 export default function App() {
   return (
     <div className="page">
@@ -44,7 +75,7 @@ export default function App() {
 
       <header className="header">
         <img
-          src="/s5300019.JPG"
+          src="/S5300019.JPG"
           alt=""
           className="hero-image"
         />
@@ -60,6 +91,8 @@ export default function App() {
           <TrackRow key={track.id} track={track} index={i} />
         ))}
       </main>
+
+      <DownloadAll />
 
       <footer className="footer">
         <p>💕</p>
